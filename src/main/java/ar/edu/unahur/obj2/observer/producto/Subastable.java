@@ -7,5 +7,6 @@ public interface Subastable {
     void notificar();
     void recibirOferta(ISubastador subastador, Oferta oferta);
     void reset();
+    Oferta getUltimaOfertaRecibida();
 
 }

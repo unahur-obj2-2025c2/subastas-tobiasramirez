@@ -29,5 +29,8 @@ public class Subastador implements ISubastador {
     public Subastador(String nombre) {
         this.nombre = nombre;
     }
-    
+    @Override
+    public void actualizar(Oferta oferta){
+        this.setUltimaOferta(oferta);
+    }
 }

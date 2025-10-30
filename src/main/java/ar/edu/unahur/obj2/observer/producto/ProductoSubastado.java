@@ -13,20 +13,34 @@ public class ProductoSubastado implements Subastable{
 
     @Override
     public void notificar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'notificar'");
+        this.subastadores.forEach(s->s.actualizar(this.getUltimaOfertaRecibida()));
     }
 
     @Override
     public void recibirOferta(ISubastador subastador,Oferta oferta) {
-       if(!this.ofertasRecibidas.contains(subastador)){
+       if(!this.subastadores.contains(subastador)){
          throw new SubastadorNoEstaEnLaListaException();
        }
        this.ofertasRecibidas.add(oferta);
+       this.notificar();
+
     }
     @Override
     public void reset(){
         this.ofertasRecibidas.clear();
         this.subastadores.clear();
     }
+    @Override
+    public Oferta getUltimaOfertaRecibida(){
+        return this.ofertasRecibidas.getLast();
+    }
+
+    public ProductoSubastado(List<Oferta> ofertasRecibidas, List<ISubastador> subastadores) {
+        this.ofertasRecibidas = ofertasRecibidas;
+        this.subastadores = subastadores;
+    }
+
+    public ProductoSubastado() {
+    }
+    
 }
